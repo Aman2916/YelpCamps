@@ -1,0 +1,40 @@
+<%layout('/layout/boilerplate.ejs') %>
+<div class="row">
+  <div
+    class="card offset-3 col-sm-6 mb-3 border border-dark p-3 mb-sm-0"
+    style="width: 35rem"
+  >
+    <img src="<%= campgrounds.image %>" class="card-img-top" alt="camp" />
+    <div class="card-body">
+      <h1 class="card-title text-center"><%=campgrounds.title %></h1>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b><%=campgrounds.location %></b></li>
+      <li class="list-group-item">
+        <p class="card-text"><%= campgrounds.description %></p>
+      </li>
+      <li class="list-group-item"></li>
+    </ul>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <form
+            action="/campgrounds/<%= campgrounds._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-danger">DELETE Camp</button>
+          </form>
+        </li>
+
+        <li class="list-group-item">
+          <a href="/campgrounds/<%= campgrounds._id %>/edit" class="card-link"
+            >Edit Campgrounds</a
+          >
+        </li>
+        <li class="list-group-item">
+          <a href="/campgrounds" class="card-link">All Campground</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
