@@ -8,13 +8,14 @@
     <div class="card-body">
       <h1 class="card-title text-center"><%=campgrounds.title %></h1>
     </div>
+
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><b><%=campgrounds.location %></b></li>
       <li class="list-group-item">
         <p class="card-text"><%= campgrounds.description %></p>
       </li>
-      <li class="list-group-item"></li>
     </ul>
+
     <div class="card-body">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -25,13 +26,16 @@
             <button class="btn btn-danger">DELETE Camp</button>
           </form>
         </li>
-
-        <li class="list-group-item">
+      </ul>
+    </div>
+    <div>
+      <ul class="" style="display: flex; gap: 30px">
+        <li class="list-group-item" style="display: inline-flex">
           <a href="/campgrounds/<%= campgrounds._id %>/edit" class="card-link"
             >Edit Campgrounds</a
           >
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item" style="display: inline-flex">
           <a href="/campgrounds" class="card-link">All Campground</a>
         </li>
       </ul>

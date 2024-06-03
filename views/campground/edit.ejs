@@ -1,27 +1,114 @@
 <%layout('/layout/boilerplate.ejs') %>
 <div>
-  <form action="/campgrounds/<%= campgrounds._id %>?_method=PUT" method="POST">
-    <div>
-      <label for="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        name="campground[title]"
-        value="<%= campgrounds.title %>"
-      />
+  <div class="row">
+    <h1 class="text-center">Edit Campground</h1>
+
+    <div class="col-6 offset-3">
+      <form
+        action="/campgrounds/<%= campgrounds._id %>?_method=PUT"
+        method="POST"
+        novalidate
+        class="needs-validation"
+      >
+        <div class="mb-4">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="campground[title]"
+            class="form-control "
+            class="valid-feedback"
+            required
+            value="<%= campgrounds.title %>"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="location">Location</label>
+          <input
+            type="text"
+            id="location"
+            name="campground[location]"
+            value="<%= campgrounds.location %>"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="image">Image Url</label>
+          <input
+            type="text"
+            id="image"
+            name="campground[image]"
+            class="form-control"
+            required
+            value="<%=campgrounds.image %>"
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+          <label for="price">Price</label>
+          <div class="input-group">
+            <span class="input-group-text" id="price-label">$</span>
+            <input
+              type="text"
+              class="form-control"
+              id="price"
+              name="campground[price]"
+              value="<%=campgrounds.price %>"
+              aria-label="price"
+              aria-describedby="price-label"
+              required
+            />
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="description">Description</label>
+          <textarea
+            type="text"
+            id="description"
+            name="campground[description]"
+            class="form-control"
+            required
+          ><%=campgrounds.description %></textarea>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-info bt-sm">Update Campground</button>
+        </div>
+        </form>
+        <a href="/campgrounds/<%=campgrounds._id%>">Back to Campground</a>
     </div>
-    <div>
-      <label for="location">Location</label>
-      <input
-        type="text"
-        id="location"
-        name="campground[location]"
-        value="<%= campgrounds.location %>"
-      />
-    </div>
-    <button>Update Changes</button>
-  </form>
+  
+ </div>
+
+
+    <script>
+      (function () {
+        "use strict";
+        window.addEventListener(
+          "load",
+          function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.getElementsByClassName("needs-validation");
+            // Loop over them and prevent submission
+            const validation = Array.from(forms, function (form) {
+              form.addEventListener(
+                "submit",
+                function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add("was-validated");
+                },
+                false
+              );
+            });
+          },
+          false
+        );
+      })();
+    </script>
+  </div>
 </div>
-<footer>
-  <a href="/campgrounds/<%=campgrounds._id%>">Back to Campground</a>
-</footer>

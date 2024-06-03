@@ -26,7 +26,7 @@ const seedDb = async () => {
         Math.random() * 1000
       )}`,
       description:
-        "hfvdtccfgnjmkmnjbhghfgfvbhnmkmnbvcvgbhnjmklkjhgfcfvgbhnjklkjhgvfbgnjmklkjhgbhnjmkgbnhjjkijuhgbjh",
+        "Some Random Generated Cities along with their famously populated Camps!!!!!!",
       price: `${price}`,
     });
     await camp.save();

@@ -3,7 +3,12 @@
   <h1 class="text-center">New Campground</h1>
 
   <div class="col-6 offset-3">
-    <form action="/campgrounds" method="POST">
+    <form
+      action="/campgrounds"
+      method="POST"
+      class="needs-validation"
+      novalidate
+    >
       <div class="mb-4">
         <label for="title">Title</label>
         <input
@@ -11,7 +16,9 @@
           id="title"
           name="campground[title]"
           class="form-control"
+          required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
 
       <div class="mb-4">
@@ -21,7 +28,9 @@
           id="location"
           name="campground[location]"
           class="form-control"
+          required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-4">
         <label for="image">Image Url</label>
@@ -30,7 +39,9 @@
           id="image"
           name="campground[image]"
           class="form-control"
+          required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <label for="price">Price</label>
@@ -44,7 +55,9 @@
             placeholder="0.00"
             aria-label="price"
             aria-describedby="price-label"
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
       </div>
 
@@ -55,7 +68,9 @@
           id="description"
           name="campground[description]"
           class="form-control"
+          required
         ></textarea>
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <button class="btn btn-success bt-sm">Add Campground</button>
@@ -64,3 +79,31 @@
     <a href="/campgrounds">Back to Campground</a>
   </div>
 </div>
+
+<script>
+  (function () {
+    "use strict";
+    window.addEventListener(
+      "load",
+      function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.getElementsByClassName("needs-validation");
+        // Loop over them and prevent submission
+        const validation = Array.from(forms, function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      },
+      false
+    );
+  })();
+</script>
