@@ -7,8 +7,9 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const catchAsync = require("./utilities/errorAsync.js");
 const ExpressError = require("./utilities/errorExpress");
-const JOI = require("joi");
+
 const { join } = require("path");
+const { campgroundSchema } = require("./schema.js");
 
 mongoose.connect("mongodb://127.0.0.1:27017/yelpCamp");
 /*.then(()=>console.log("database connected"))
@@ -29,6 +30,15 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+const validateCampground = (req, res, next) => {
+  const { error } = campgroundSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((e) => e.message).join(",");
+    throw new ExpressError(msg, 300);
+  } else {
+    next();
+  }
+};
 //index page shows all available Campgrounds
 app.get("/campgrounds", async (req, res) => {
   const campgrounds = await Campground.find({});
@@ -41,30 +51,17 @@ app.get("/campgrounds/new", (req, res) => {
 });
 
 //whenever a form is submitted add camp , redirects to show page
+
 app.post(
   "/campgrounds",
+  validateCampground,
   catchAsync(async (req, res, next) => {
     /*if (!req.body.campground) {
       throw new ExpressError(400, "Invalid Data");
     }*/
-    const campgroundSchema = JOI.object({
-      campground: JOI.object({
-        title: JOI.string().required(),
-        location: JOI.string().required(),
-        price: JOI.number().required(),
-        description: JOI.string().required(),
-        image: JOI.string().required(),
-      }).required(),
-    });
-    const { error } = campgroundSchema.validate(req.body);
-    if (error) {
-      const msg = error.details.map((e) => e.message).join(",");
-      throw new ExpressError(error.details, 300);
-    } else {
-      const campground = new Campground(req.body.campground);
-      await campground.save();
-      res.redirect(`/campgrounds/${campground._id}`);
-    }
+    const campground = new Campground(req.body.campground);
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
   })
 );
 
@@ -89,6 +86,7 @@ app.get(
 //fake put use post
 app.put(
   "/campgrounds/:id",
+  validateCampground,
   catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const campgrounds = await Campground.findByIdAndUpdate(id, {
@@ -109,7 +107,6 @@ app.delete(
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page Not Found", 404));
-  res.send("404 Page Not Found");
 });
 
 app.use((err, req, res, next) => {
