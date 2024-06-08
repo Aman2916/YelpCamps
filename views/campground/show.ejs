@@ -1,7 +1,7 @@
 <%layout('/layout/boilerplate.ejs') %>
 <div class="row">
   <div
-    class="card offset-3 col-sm-6 mb-3 border border-dark p-3 mb-sm-0"
+    class="card  col-sm-6 mb-3 border border-dark p-3 mb-sm-0"
     style="width: 35rem"
   >
     <img src="<%= campgrounds.image %>" class="card-img-top" alt="camp" />
@@ -14,7 +14,9 @@
       <li class="list-group-item">
         <p class="card-text"><%= campgrounds.description %></p>
       </li>
+      <li class="list-group-item">Submitted by <%= campgrounds.author.username%></li>
     </ul>
+  <% if(currentUser&&campgrounds.author.equals(currentUser._id)) { %>
 
     <div class="card-body">
       <ul class="list-group list-group-flush">
@@ -28,6 +30,7 @@
         </li>
       </ul>
     </div>
+    <% } %>
     <div class="mb-3 border-bottom pt-1">
       <ul class="" style="display: flex; gap: 30px">
         <li class="list-group-item" style="display: inline-flex">
@@ -40,8 +43,17 @@
         </li>
       </ul>
     </div>
-    <div class="mb-3">
-      <form action="/campgrounds">
+   </div>
+    
+    <div class="col-6 mb-3 card">
+     
+      <h4 ><b>Leave A Review</b></h4>
+      <form
+        action="/campgrounds/<%= campgrounds._id %>/reviews"
+        class="needs-validation"
+        method="POST"
+        novalidate
+      >
         <div>
           <label class="label" for="rating">Rating</label>
           <input
@@ -50,14 +62,59 @@
             min="1"
             max="5"
             name="review[rating]"
+            required
           />
         </div>
         <div class="mt-3">
           <label class="label" for="revBody">Type in your Feedback</label>
-          <input class="form-control"" type="textarea" id="revBody"
-          name="review[body]" row=3 col=40/>
+          <textarea class="form-control"" id="revBody"
+            name="review[body]" row=3 col=40  required ></textarea>
+            <div class="valid-feedback">Please fill some data </div>
+        </div>
+        <div class="mt-2">
+          <button class="btn btn-success mb-3">submit</button>
         </div>
       </form>
+      
+        <% for(let campground of campgrounds.reviews) { %>
+      
+      <div class="card mb-2">   
+          <div class="card-body">
+            <h5 h5="card-title">Rating: <%=campground.rating%></h5>
+            <p class="card-text">Review: <%=campground.body%></p>
+          </div>
+      </div>
+        
+      <% } %>
+    
     </div>
-  </div>
+  
 </div>
+
+<script>
+  (function () {
+    "use strict";
+    window.addEventListener(
+      "load",
+      function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.getElementsByClassName("needs-validation");
+        // Loop over them and prevent submission
+        const validation = Array.from(forms, function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      },
+      false
+    );
+  })();
+</script>

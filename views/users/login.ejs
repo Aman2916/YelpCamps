@@ -1,0 +1,51 @@
+<%layout('/layout/boilerplate.ejs') %>
+<h1>Login</h1>
+<form action="/login" method="POST" class="needs-validation" novalidate>
+  <div class="mb-3 ">
+    <div class="form-group ">
+    <label  for="username">Username</label>
+    <input  class="form-control"   type="text" id="username" name="username" required/>
+    </div>
+    <div class="valid-feedback">Looks Good.</div>
+   </div>
+  
+  <div class="form-group mb-3 ">
+    <label  for="password">Password</label>
+    <input class="form-control" type="text" id="password" name="password" required  />
+    <div class="valid-feedback">Looks Good.</div>
+  </div>
+</div>  
+<button class="btn btn-success">Login</button>
+</form>
+
+
+
+<script>
+    (function () {
+      "use strict";
+      window.addEventListener(
+        "load",
+        function () {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          const forms = document.getElementsByClassName("needs-validation");
+          // Loop over them and prevent submission
+          const validation = Array.from(forms, function (form) {
+            form.addEventListener(
+              "submit",
+              function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add("was-validated");
+              },
+              false
+            );
+          });
+        },
+        false
+      );
+    })();
+  </script>
+</div>
+</div>
