@@ -5,6 +5,7 @@ const passport = require("passport");
 const { storeReturnTo } = require("../middleware");
 const user = require("../controller/user");
 
+router.get("/", user.firstPage);
 router.get("/home", user.home);
 router.get("/register", user.registerUser);
 

@@ -4,7 +4,6 @@ const map = new mapboxgl.Map({
   container: "cluster-map",
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/mapbox/navigation-day-v1",
-
   center:
     campgrounds.features[Math.floor(Math.random() * 100)].geometry.coordinates,
   zoom: 4,

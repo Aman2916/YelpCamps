@@ -20,16 +20,16 @@ const sample = (arr) => arr[Math.floor(Math.random() * arr.length)]; //sample(ar
 const seedDb = async () => {
   await Campground.deleteMany({});
 
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 50; i++) {
     const random100 = Math.floor(Math.random() * 1000);
     const price = Math.floor(Math.random() * 20) + 10;
     const camp = new Campground({
-      author: "66631a6fae22068098604ad2",
+      author: "666d2eba9dc89d2c743d38a2",
       location: `${cities[random100].city},${cities[random100].state}`,
       title: `${sample(descriptors)}${sample(places)}`,
       images: {
-        url: "https://res.cloudinary.com/dv801otku/image/upload/v1717921795/YelpCamp/hzolf7mbreidyzxmvgdd.jpg",
-        filename: "YelpCamp/hzolf7mbreidyzxmvgdd",
+        url: "https://res.cloudinary.com/dv801otku/image/upload/v1717921795/YelpCamp/jux0sp9zp5t9ovxc11lh",
+        filename: "YelpCamp/jux0sp9zp5t9ovxc11lh",
       },
       description:
         "Some Random Generated Cities along with their famously populated Camps!!!!!!",
