@@ -1,4 +1,8 @@
-{
+{ 
+  "engines": {
+    "node": "v18.17.1"
+  },
+
   "name": "yalpcamp",
   "version": "1.0.0",
   "main": "index.js",
