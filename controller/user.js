@@ -1,7 +1,7 @@
 const User = require("../models/user");
 
 module.exports.firstPage = (req, res) => {
-  res.render("..views/home");
+  res.redirect("./home");
 };
 module.exports.home = (req, res) => {
   res.render("../views/home");
