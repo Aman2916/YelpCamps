@@ -7,15 +7,22 @@
 
 <div class="card mb-3">
   <div class="row">
-    <div class="col-md-4">
+    <div
+      class="col-md-4 max-height:auto max-width:100%"
+      style="object-fit: contain"
+    >
       <% if(x.images.length){ %>
-      <img src="<%= x.images[0].url%>" class="img-fluid" />
+      <img
+        src="<%= x.images[0].url%>"
+        class="img-fluid img-thumbnail"
+        style="width: 100%; height: auto; max-height: 500px"
+      />
     </div>
     <% } %>
     <div class="col-md-8">
       <div class="card-body">
-        <h1 class="card-title"><%=x.title%></h1>
-        <p class="card-text"><%=x.description%></p>
+        <h1 class="card-title mb-3"><%=x.title%></h1>
+        <p class="card-text mb-3"><%=x.description%></p>
 
         <div style="display: flex">
           <p class="text-muted"><%=x.location%></p>

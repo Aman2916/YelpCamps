@@ -15,12 +15,16 @@ const helmet = require("helmet");
 const userRoutes = require("./Routes/users");
 const campgroundRoutes = require("./Routes/campground");
 const reviewRoutes = require("./Routes/reviews");
+const dbUrl = process.env.mongoAtlasDB;
 
+const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const user = require("./models/user");
-mongoose.connect("mongodb://127.0.0.1:27017/yelpCamp");
+//mongoose.connect("mongodb://127.0.0.1:27017/yelpCamp");
+
+mongoose.connect(dbUrl);
 /*.then(()=>console.log("database connected"))
 .catch(err=>{
 console.log("Error")
@@ -39,7 +43,16 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret: "thisshouldbeabettersecret!",
+  },
+});
 const configSession = {
+  store,
   name: "camp",
   secret: "This is a secret",
   resave: false,
@@ -63,6 +76,7 @@ const scriptSrcUrls = [
   "https://cdn.jsdelivr.net",
 ];
 const styleSrcUrls = [
+  "https://stackpath.bootstrapcdn.com/",
   "https://kit-free.fontawesome.com/",
   "https://api.mapbox.com/",
   "https://api.tiles.mapbox.com/",

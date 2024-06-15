@@ -1,10 +1,14 @@
+require("dotenv").config({
+  path: require("path").resolve(__dirname, "../.env"),
+});
+const dbUrl = process.env.mongoAtlasDB;
 const mongoose = require("mongoose");
 const Campground = require("../models/campground.js");
 const cities = require("./cities");
 const { descriptors, places } = require("./seedHelpers");
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/yelpCamp")
+  .connect(dbUrl)
   .then(() => console.log("database connected"))
   .catch((err) => {
     console.log("Error");

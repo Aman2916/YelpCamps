@@ -45,7 +45,10 @@ const CampgroundSchema = new mongoose.Schema(
 
 CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
   return `<p><a href="/campgrounds/${this._id}">${this.title}</a></p>
-          <p>${this.description.substring(0, 30)}...</p>`;
+          <p>${this.description.substring(0, 50)}...</p>
+           <img src="${
+             this.images[0].thumbnail
+           }" style="max-height:70px;display:center"/>`;
 });
 
 module.exports = mongoose.model("Campground", CampgroundSchema);
