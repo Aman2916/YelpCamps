@@ -28,7 +28,7 @@ const seedDb = async () => {
       location: `${cities[random100].city},${cities[random100].state}`,
       title: `${sample(descriptors)}${sample(places)}`,
       images: {
-        url: "https://res.cloudinary.com/dv801otku/image/upload/v1717921795/YelpCamp/vhgmldqvizwccgaaumyy",
+        url: "https://res.cloudinary.com/dv801otku/image/upload/v1718280495/YelpCamp/vhgmldqvizwccgaaumyy.jpg",
         filename: "YelpCamp/vhgmldqvizwccgaaumyy",
       },
       description:
