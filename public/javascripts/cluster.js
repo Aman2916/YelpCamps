@@ -5,7 +5,9 @@ const map = new mapboxgl.Map({
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/mapbox/navigation-day-v1",
   center:
-    campgrounds.features[Math.floor(Math.random() * 100)].geometry.coordinates,
+    campgrounds.features[
+      Math.floor(Math.random() * campgrounds.features.length)
+    ].geometry.coordinates,
   zoom: 4,
 });
 
@@ -41,12 +43,12 @@ map.on("load", () => {
         "step",
         ["get", "point_count"],
         "#90CAF9",
-        4,
+        2,
         "#E53935",
-        6,
+        3,
         "#90A4AE",
       ],
-      "circle-radius": ["step", ["get", "point_count"], 10, 4, 20, 10, 40],
+      "circle-radius": ["step", ["get", "point_count"], 10, 2, 20, 3, 40],
     },
   });
 
