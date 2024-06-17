@@ -28,8 +28,8 @@ const seedDb = async () => {
       location: `${cities[random100].city},${cities[random100].state}`,
       title: `${sample(descriptors)}${sample(places)}`,
       images: {
-        url: "https://res.cloudinary.com/dv801otku/image/upload/v1717921795/YelpCamp/cvgcjn815biyngyts3ia",
-        filename: "YelpCamp/cvgcjn815biyngyts3ia",
+        url: "https://res.cloudinary.com/dv801otku/image/upload/v1717921795/YelpCamp/vhgmldqvizwccgaaumyy",
+        filename: "YelpCamp/vhgmldqvizwccgaaumyy",
       },
       description:
         "Some Random Generated Cities along with their famously populated Camps!!!!!!",
