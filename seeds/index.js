@@ -32,7 +32,7 @@ const seedDb = async () => {
         filename: "YelpCamp/ebomacaavoatke1y5rvs",
       },
       description:
-        "Some Random Generated Cities along with their famously populated Camps!!!!!!",
+        "Nestled in the heart of nature, this serene campground offers a perfect escape from the hustle and bustle of everyday life. Surrounded by lush greenery and the soothing sounds of the wilderness, it provides a tranquil setting for relaxation and adventure. Each campsite is thoughtfully designed to blend seamlessly with the natural environment, offering a cozy and comfortable space to set up camp.",
       price: `${price}`,
       geometry: {
         type: "Point",

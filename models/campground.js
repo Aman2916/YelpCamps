@@ -48,7 +48,7 @@ CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
           <p>${this.description.substring(0, 50)}...</p>
            <img src="${
              this.images[0].thumbnail
-           }" style="max-height:70px;display:center"/>`;
+           }" style="max-height:80px;display:center"/>`;
 });
 
 module.exports = mongoose.model("Campground", CampgroundSchema);
